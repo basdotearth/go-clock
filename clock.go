@@ -80,6 +80,7 @@ func main() {
 	if usePins {
 		for _, pinNumber := range unwantedPins {
 			pin := rpio.Pin(pinNumber)
+			pin.Output()
 			pin.Low()
 		}
 	}

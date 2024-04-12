@@ -11,6 +11,9 @@ import (
 func main() {
 	err := rpio.Open()
 	usePins := err == nil
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	minutePins := map[int][]int{
 		5:  {8, 22},
@@ -52,7 +55,7 @@ func main() {
 
 	fmt.Println("Turning on pins", wantedPins)
 	if usePins {
-		for pinNumber := range wantedPins {
+		for _, pinNumber := range wantedPins {
 			pin := rpio.Pin(pinNumber)
 			pin.Output()
 			pin.High()
@@ -75,13 +78,13 @@ func main() {
 
 	fmt.Println("Turning off pins", unwantedPins)
 	if usePins {
-		for pinNumber := range unwantedPins {
+		for _, pinNumber := range unwantedPins {
 			pin := rpio.Pin(pinNumber)
 			pin.Low()
 		}
 	}
 
 	if usePins {
-		rpio.Close()
+		defer rpio.Close()
 	}
 }

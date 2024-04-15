@@ -50,6 +50,15 @@ func main() {
 	roundMinutes := float64(minutes/5) * 5
 	roundHours := hour % 12
 
+	// Everything past the half hour relates to the NEXT hour...
+	if roundMinutes > 30 {
+		roundHours = roundHours + 1
+	}
+	// ...but there is no 13 o'clock.
+	if roundHours > 12 {
+		roundHours = 1
+	}
+
 	wantedPins := []int{1, 24, hourPins[roundHours]}
 	wantedPins = append(wantedPins, minutePins[int(roundMinutes)]...)
 

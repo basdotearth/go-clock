@@ -31,6 +31,7 @@ func main() {
 	}
 
 	hourPins := map[int]int{
+		0:  2,
 		1:  17,
 		2:  6,
 		3:  0,
@@ -42,7 +43,6 @@ func main() {
 		9:  11,
 		10: 15,
 		11: 3,
-		12: 2,
 	}
 
 	t := time.Now()
